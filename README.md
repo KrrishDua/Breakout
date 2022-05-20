@@ -1,2 +1,2 @@
 # BREAKOUT
-An escape room game created using unity 3D. Only free assets will be used.
+An escape room game created using unity @D. Only free assets will be used.
