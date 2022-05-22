@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
+public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class NewBehaviourScript : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerDown(PointerEventData eventdata){
         print("Clicked");
+        SceneManager.LoadScene("Main Game");
     }
 
     public void OnPointerEnter(PointerEventData eventdata){
