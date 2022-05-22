@@ -10,5 +10,6 @@ public class StartButton : MenuButton, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventdata){
         print("Clicked");
         SceneManager.LoadScene("Main Game");
+        CursorHelper.CursorNormal();
     }
 }
