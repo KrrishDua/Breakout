@@ -3,7 +3,8 @@ guid: 7b993c49db711d5448b472890dc5a7e5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - handTexture: {fileID: 2800000, guid: 9218877229b7b2f4aaaae00909162aaa, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
