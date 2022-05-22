@@ -26,11 +26,11 @@ public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventdata){
         print("Pointer Entered");
-        GetComponent<Image>().color = Color.red;
+        StartCoroutine(Fading.FadeTo(Color.grey, .2, GetComponent<Image>()));
     }
 
     public void OnPointerExit(PointerEventData eventdata){
         print("Pointer Exited");
-        GetComponent<Image>().color = Color.white;
+        StartCoroutine(Fading.FadeTo(Color.white, .2, GetComponent<Image>()));
     }
 }
