@@ -34,7 +34,8 @@ public class UIScript : MonoBehaviour
         RectTransform rt = GameObject.Find("imgScreenshot").GetComponent<RectTransform>();
         // hackily ensure correct proportions
         // working out (using 1027x642): 1027/16*?=642 => 1027/16 = 642/? => ? = 642/(1027/16)
-        rt.sizeDelta = new Vector2(rt.sizeDelta.x, (float)(rt.sizeDelta.x / 16.0 * (StartButton.screenshot.height/(StartButton.screenshot.width/16.0))));//*(StartButton.screenshot.height / StartButton.screenshot.width)));
+        // symbolab then simplified that down a ton lol
+        rt.sizeDelta = new Vector2(rt.sizeDelta.x, rt.sizeDelta.x * ((float)StartButton.screenshot.height / StartButton.screenshot.width));
         print(rt.sizeDelta);
         print((StartButton.screenshot.height/(StartButton.screenshot.width/16)));
         //get start, target, and difference vectors
