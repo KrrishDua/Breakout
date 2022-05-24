@@ -11,11 +11,10 @@ public class UIScript : MonoBehaviour
     {
         //on main game load, load in screenshot from title screen, then "zoom out" from it (move and scale the image, not the camera)
         if(SceneManager.GetActiveScene().name == "Main Game"){
-            StartButton.screenshot ??= new Texture2D(1920,1080);
-            GameObject.Find("imgScreenshot").GetComponent<RawImage>().texture = StartButton.screenshot;
-            print(StartButton.screenshot.width);print(StartButton.screenshot.height);
-            StartCoroutine(ZoomScreenshot());
-            StartCoroutine(Wait1ThenFade());
+            StartButton.screenshot ??= new Texture2D(1920,1080); //if screenshot doesn't exist (i.e. we're testing), make a blank one
+            GameObject.Find("imgScreenshot").GetComponent<RawImage>().texture = StartButton.screenshot; //set imgScreenshot texture to screenshot
+            StartCoroutine(ZoomScreenshot());//start zooming
+            StartCoroutine(Wait1ThenFade());//wait one second then fade in
         }
     }
 
@@ -33,11 +32,7 @@ public class UIScript : MonoBehaviour
         // took a long time to find the right RectTransform properties - anchoredPosition is position relative to anchor at centre of UI, sizeDelta is effectively just size
         RectTransform rt = GameObject.Find("imgScreenshot").GetComponent<RectTransform>();
         // hackily ensure correct proportions
-        // working out (using 1027x642): 1027/16*?=642 => 1027/16 = 642/? => ? = 642/(1027/16)
-        // symbolab then simplified that down a ton lol
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, rt.sizeDelta.x * ((float)StartButton.screenshot.height / StartButton.screenshot.width));
-        print(rt.sizeDelta);
-        print((StartButton.screenshot.height/(StartButton.screenshot.width/16)));
         //get start, target, and difference vectors
         Vector3 startPos  = rt.anchoredPosition, targetPos  = new Vector3(-365, 149, 0), differencePos  = targetPos  - startPos;
         Vector2 startSize = rt.sizeDelta,        targetSize = new Vector2(81, 45),       differenceSize = targetSize - startSize;
