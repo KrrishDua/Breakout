@@ -789,7 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4a4499b6bfba6448ff6dfd29ea17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handTexture: {fileID: 2800000, guid: 9218877229b7b2f4aaaae00909162aaa, type: 3}
+  handTexture: {fileID: 2800000, guid: 82939e866a447a4478a4a6dc60629aa0, type: 3}
 --- !u!1 &1977366811
 GameObject:
   m_ObjectHideFlags: 0
