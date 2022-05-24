@@ -7,19 +7,25 @@ using UnityEngine.UI;
 
 public class StartButton : MenuButton, IPointerDownHandler
 {
-    // int screenWidth = 1920, screenHeight = 1080;
     public static Texture2D screenshot;
+    //make sndError not unload after scene change
+    public void Start(){
+        DontDestroyOnLoad(GameObject.Find("sndError"));
+    }
     // Start game when clicked
     public void OnPointerDown(PointerEventData eventdata){
         // if button is not left click, return
         if(eventdata.button != PointerEventData.InputButton.Left)return;
         print("Clicked");
-        StartCoroutine(ScreenshotThenSwitch());
+        StartCoroutine(ErrorSequence());
     }
     // wait until the frame has fully rendered, screenshot it, then switch scenes
-    public IEnumerator ScreenshotThenSwitch(){
-        // wait until frame has fully rendered
-        yield return new WaitForEndOfFrame();
+    public IEnumerator ErrorSequence(){
+        StartCoroutine(Fading.FadeTo(new Color(1,1,1,.3f), .2f, GameObject.Find("imgFade").GetComponent<Image>())); //half-fade to white
+        GameObject.Find("imgError").GetComponent<Image>().color = Color.white; // show error message
+        GameObject.Find("sndError").GetComponent<AudioSource>().Play(0); //play error sound
+        yield return new WaitForSeconds(2); // wait one second
+        yield return new WaitForEndOfFrame();// wait until frame has fully rendered
         // screenshot it
         // https://docs.unity3d.com/ScriptReference/ScreenCapture.CaptureScreenshotAsTexture.html
         screenshot = ScreenCapture.CaptureScreenshotAsTexture();
