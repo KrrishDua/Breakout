@@ -12,6 +12,7 @@ public class UIScript : MonoBehaviour
         //on main game load, load in screenshot from title screen, then "zoom out" from it (move and scale the image, not the camera)
         if(SceneManager.GetActiveScene().name == "Main Game"){
             GameObject.Find("imgScreenshot").GetComponent<RawImage>().texture = StartButton.screenshot;
+            print(StartButton.screenshot.width);print(StartButton.screenshot.height);
             StartCoroutine(ZoomScreenshot());
             StartCoroutine(Wait1ThenFade());
         }
@@ -30,8 +31,14 @@ public class UIScript : MonoBehaviour
     public IEnumerator ZoomScreenshot(){
         // took a long time to find the right RectTransform properties - anchoredPosition is position relative to anchor at centre of UI, sizeDelta is effectively just size
         RectTransform rt = GameObject.Find("imgScreenshot").GetComponent<RectTransform>();
-        Vector3 startPos = rt.anchoredPosition, targetPos = new Vector3(-365, 149, 0), differencePos = targetPos - startPos;
-        Vector2 startSize = rt.sizeDelta, targetSize = new Vector2(81, 45), differenceSize = targetSize - startSize;
+        // hackily ensure correct proportions
+        // working out (using 1027x642): 1027/16*?=642 => 1027/16 = 642/? => ? = 642/(1027/16)
+        rt.sizeDelta = new Vector2(rt.sizeDelta.x, (float)(rt.sizeDelta.x / 16.0 * (StartButton.screenshot.height/(StartButton.screenshot.width/16.0))));//*(StartButton.screenshot.height / StartButton.screenshot.width)));
+        print(rt.sizeDelta);
+        print((StartButton.screenshot.height/(StartButton.screenshot.width/16)));
+        //get start, target, and difference vectors
+        Vector3 startPos  = rt.anchoredPosition, targetPos  = new Vector3(-365, 149, 0), differencePos  = targetPos  - startPos;
+        Vector2 startSize = rt.sizeDelta,        targetSize = new Vector2(81, 45),       differenceSize = targetSize - startSize;
         // same as Fading.FadeTo
         float proportion;
         for(float timePassed=0; (proportion=timePassed/2)<=1; timePassed+=Time.deltaTime){
