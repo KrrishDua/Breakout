@@ -11,6 +11,7 @@ public class UIScript : MonoBehaviour
     {
         //on main game load, load in screenshot from title screen, then "zoom out" from it (move and scale the image, not the camera)
         if(SceneManager.GetActiveScene().name == "Main Game"){
+            StartButton.screenshot ??= new Texture2D(1920,1080);
             GameObject.Find("imgScreenshot").GetComponent<RawImage>().texture = StartButton.screenshot;
             print(StartButton.screenshot.width);print(StartButton.screenshot.height);
             StartCoroutine(ZoomScreenshot());
