@@ -11,6 +11,8 @@ public class StartButton : MenuButton, IPointerDownHandler
     public static Texture2D screenshot;
     // Start game when clicked
     public void OnPointerDown(PointerEventData eventdata){
+        // if button is not left click, return
+        if(eventdata.button != PointerEventData.InputButton.Left)return;
         print("Clicked");
         StartCoroutine(ScreenshotThenSwitch());
     }
