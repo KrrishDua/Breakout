@@ -10,6 +10,6 @@ public class CursorHelper : MonoBehaviour
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
     public static void CursorHand(){
-                Cursor.SetCursor(GameObject.Find("cursorLoader").GetComponent<CursorHelper>().handTexture, new Vector2(12,5), CursorMode.Auto);
+        Cursor.SetCursor(GameObject.Find("cursorLoader").GetComponent<CursorHelper>().handTexture, new Vector2(12,5), CursorMode.Auto);
     }
 }
