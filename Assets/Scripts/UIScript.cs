@@ -11,8 +11,8 @@ public class UIScript : MonoBehaviour
     {
         //on main game load, load in screenshot from title screen, then "zoom out" from it (move and scale the image, not the camera)
         if(SceneManager.GetActiveScene().name == "Main Game"){
-            StartButton.screenshot ??= new Texture2D(1920,1080); //if screenshot doesn't exist (i.e. we're testing), make a blank one
-            GameObject.Find("imgScreenshot").GetComponent<Image>().sprite = Sprite.Create(StartButton.screenshot, new Rect(0,0,StartButton.screenshot.width, StartButton.screenshot.height), new Vector2(.5f,.5f)); //set imgScreenshot sprite to screenshot
+            StartButton.screenshotError ??= new Texture2D(1920,1080); //if screenshot doesn't exist (i.e. we're testing), make a blank one
+            GameObject.Find("imgScreenshot").GetComponent<Image>().sprite = Sprite.Create(StartButton.screenshotError, new Rect(0,0,StartButton.screenshotError.width, StartButton.screenshotError.height), new Vector2(.5f,.5f)); //set imgScreenshot sprite to screenshot
             StartCoroutine(ZoomScreenshotEasy(true));//start zooming
             StartCoroutine(Wait1ThenFade());//wait one second then fade in
         }
@@ -54,13 +54,13 @@ public class UIScript : MonoBehaviour
         // took a long time to find the right RectTransform properties - anchoredPosition is position relative to anchor at centre of UI, sizeDelta is effectively just size
         RectTransform rt = GameObject.Find("imgScreenshot").GetComponent<RectTransform>();
         // hackily ensure correct proportions
-        if(!zoomOut)rt.sizeDelta = new Vector2(rt.sizeDelta.x, rt.sizeDelta.x * ((float)StartButton.screenshot.height / StartButton.screenshot.width));
+        if(!zoomOut)rt.sizeDelta = new Vector2(rt.sizeDelta.x, rt.sizeDelta.x * ((float)StartButton.screenshotError.height / StartButton.screenshotError.width));
         //get start, target, and difference vectors
         Vector3 startPos  = rt.anchoredPosition,
             targetPos  = zoomOut ? new Vector3(-365, 149, 0) : new Vector3(0,0,0),
             differencePos  = targetPos  - startPos;
         Vector2 startSize = rt.sizeDelta,
-            targetSize = zoomOut ? new Vector2(81, 45) : new Vector2(1920,1920*((float)StartButton.screenshot.height / StartButton.screenshot.width)),
+            targetSize = zoomOut ? new Vector2(81, 45) : new Vector2(1920,1920*((float)StartButton.screenshotError.height / StartButton.screenshotError.width)),
             differenceSize = targetSize - startSize;
         // same as Fading.FadeTo
         float proportion;
@@ -72,6 +72,7 @@ public class UIScript : MonoBehaviour
         //set to exactly right position at the end
         rt.anchoredPosition = targetPos;
         rt.sizeDelta = targetSize;
+        GameObject.Find("imgScreenshot").GetComponent<Image>().sprite = Sprite.Create(StartButton.screenshotEmpty, new Rect(0,0,StartButton.screenshotEmpty.width,StartButton.screenshotEmpty.height), new Vector2(.5f,.5f));
         GameObject.Find("imgScreenshot").GetComponent<ComputerButton>().canOpenScreen = true;
     }
 
