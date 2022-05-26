@@ -53,7 +53,7 @@ public class UIScript : MonoBehaviour
         rt.anchoredPosition = targetPos;
         rt.sizeDelta = targetSize;
         GameObject.Find("imgScreenshot").GetComponent<Image>().sprite = Sprite.Create(StartButton.screenshotEmpty, new Rect(0,0,StartButton.screenshotEmpty.width,StartButton.screenshotEmpty.height), new Vector2(.5f,.5f));
-        GameObject.Find("imgScreenshot").GetComponent<ComputerButton>().setCOS(true);
+        GameObject.Find("imgScreenshot").GetComponent<ComputerButton>().interactable = true;
     }
 
     private float cubicEase(float x){ // 0<=x<=2

@@ -15,6 +15,7 @@ public class StartButton : MenuButton, IPointerDownHandler
     }
     // Start game when clicked
     public void OnPointerDown(PointerEventData eventdata){
+        if(!interactable)return;
         // if button is not left click, return
         if(eventdata.button != PointerEventData.InputButton.Left)return;
         print("Clicked");
@@ -22,6 +23,7 @@ public class StartButton : MenuButton, IPointerDownHandler
     }
     // wait until the frame has fully rendered, screenshot it, TODO finish this comment
     public IEnumerator ErrorSequence(){
+        interactable = false;
         GameObject.Find("btnStart").GetComponent<Image>().color = Color.white;
         yield return new WaitForEndOfFrame();
         screenshotEmpty = ScreenCapture.CaptureScreenshotAsTexture();
