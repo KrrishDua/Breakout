@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ComputerButton : MenuButton, IPointerDownHandler
 {
-    public bool canOpenScreen = false;
+    private bool canOpenScreen = false;
     public void OnPointerDown(PointerEventData eventdata){
         if(canOpenScreen){
             print("Screen Opened");
@@ -28,4 +28,5 @@ public class ComputerButton : MenuButton, IPointerDownHandler
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("Title Screen");
     }
+    public void setCOS(bool val){canOpenScreen=val;}// to avoid inspector messing with it
 }

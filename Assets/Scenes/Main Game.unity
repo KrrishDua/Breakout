@@ -176,7 +176,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -601,7 +601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdb8160b1fb34f4f901b7a9452d9024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canOpenScreen: 0
 --- !u!1 &1810697296
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdb8160b1fb34f4f901b7a9452d9024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canOpenScreen: 0
 --- !u!1 &2060902048
 GameObject:
   m_ObjectHideFlags: 0

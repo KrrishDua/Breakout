@@ -34,7 +34,7 @@ public class UIScript : MonoBehaviour
         // took a long time to find the right RectTransform properties - anchoredPosition is position relative to anchor at centre of UI, sizeDelta is effectively just size
         RectTransform rt = GameObject.Find("imgScreenshot").GetComponent<RectTransform>();
         // hackily ensure correct proportions
-        if(!zoomOut)rt.sizeDelta = new Vector2(rt.sizeDelta.x, rt.sizeDelta.x * ((float)StartButton.screenshotError.height / StartButton.screenshotError.width));
+        if(zoomOut)rt.sizeDelta = new Vector2(rt.sizeDelta.x, rt.sizeDelta.x * ((float)StartButton.screenshotError.height / StartButton.screenshotError.width));
         //get start, target, and difference vectors
         Vector3 startPos  = rt.anchoredPosition,
             targetPos  = zoomOut ? new Vector3(-365, 149, 0) : new Vector3(0,0,0),
@@ -53,7 +53,7 @@ public class UIScript : MonoBehaviour
         rt.anchoredPosition = targetPos;
         rt.sizeDelta = targetSize;
         GameObject.Find("imgScreenshot").GetComponent<Image>().sprite = Sprite.Create(StartButton.screenshotEmpty, new Rect(0,0,StartButton.screenshotEmpty.width,StartButton.screenshotEmpty.height), new Vector2(.5f,.5f));
-        GameObject.Find("imgScreenshot").GetComponent<ComputerButton>().canOpenScreen = true;
+        GameObject.Find("imgScreenshot").GetComponent<ComputerButton>().setCOS(true);
     }
 
     private float cubicEase(float x){ // 0<=x<=2
