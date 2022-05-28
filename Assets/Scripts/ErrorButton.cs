@@ -29,6 +29,6 @@ public class ErrorButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         StartCoroutine(Fading.FadeTo(new Color(1,1,1,.3f), .2f, GameObject.Find("imgFade").GetComponent<Image>())); //half-fade to white
         GameObject.Find("imgError").GetComponent<Image>().color = Color.white; // show error message
         ErrorButton.errorVisible = true;
-        GameObject.Find("sndError").GetComponent<AudioSource>().Play(0); //play error sound
+        //GameObject.Find("sndError").GetComponent<AudioSource>().Play(0); //play error sound
     }
 }
