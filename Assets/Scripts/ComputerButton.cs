@@ -15,7 +15,7 @@ public class ComputerButton : MenuButton, IPointerDownHandler
         print("Screen Opened");
         OnPointerExit(null);
         interactable = false;
-        StartCoroutine(GameObject.Find("Canvas").GetComponent<UIScript>().ZoomScreenshotEasy(false));
+        StartCoroutine(GameObject.Find("Background").GetComponent<UIScript>().ZoomScreenshotEasy(false));
         StartCoroutine(Wait2ThenSwitch());
     }
     /*public override void OnPointerEnter(PointerEventData eventdata){
